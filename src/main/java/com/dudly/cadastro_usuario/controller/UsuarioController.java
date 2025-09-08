@@ -3,7 +3,6 @@ package com.dudly.cadastro_usuario.controller;
 import com.dudly.cadastro_usuario.business.UsuarioService;
 import com.dudly.cadastro_usuario.infrastructure.entitys.Usuario;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +26,13 @@ public class UsuarioController {
 
     @DeleteMapping
     public ResponseEntity<Void> deletarUsuarioPorEmail(@RequestParam String email){
+        usuarioService.deletarUsuarioPorEmail(email);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> atualizarUsuarioPorId(@RequestParam Integer id, @RequestBody Usuario usuario){
+        usuarioService.atualizarUsuarioPorId(id, usuario);
         return ResponseEntity.ok().build();
     }
 }
